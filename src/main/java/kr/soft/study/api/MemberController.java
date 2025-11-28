@@ -3,7 +3,9 @@ package kr.soft.study.api;
 import jakarta.servlet.http.HttpServletRequest;
 import kr.soft.study.dto.BoardDTO;
 import kr.soft.study.dto.MemberDTO;
+import kr.soft.study.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 public class MemberController {
+
+    @Autowired
+    private MemberService memberService;
 
     @GetMapping("/")
     public void print(){
@@ -66,5 +71,10 @@ public class MemberController {
         log.info(member.toString());
 
         return member;
+    }
+
+    @GetMapping("/test")
+    public void test(){
+        memberService.testConnection();
     }
 }
